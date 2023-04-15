@@ -7,6 +7,9 @@ describe('Get status', () => {
             url: 'https://www.weatherbit.io/api/swaggerui/weather-api-v2#!/andautomatebelowAPIs',
         }).as('weather')
         cy.get('@weather').its('status').should('equal', 200)
-        cy.get('@weather').its('iat').should('equal', 38)
+        cy.get('@weather').then((response) =>{
+            expect(response.data.iat).to.eq('38')
+            expect(response.data.ion).to.eq('-78.25')
+        })
     });
 })
